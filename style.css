@@ -1,0 +1,122 @@
+/* 1. CONFIGURAÇÃO DA TELA "RETRO" */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.game-screen {
+    text-align: center;
+    width: 100%;
+}
+
+.pixel-title {
+    font-size: 1.5rem;
+    color: #00ff00;
+    margin-bottom: 120px; /* Espaço extra para as logos aparecerem */
+    text-shadow: 3px 3px #005500;
+}
+
+/* 2. O PALCO DE SELEÇÃO */
+.stage {
+    display: flex;
+    gap: 80px;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.pixel-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Necessário para posicionar a logo acima */
+    cursor: pointer;
+    width: 200px;
+}
+
+.label {
+    font-size: 16px;
+    color: #888;
+    transition: color 0.2s steps(2);
+    z-index: 10;
+}
+
+/* 3. LÓGICA DA LOGO (PIXEL ART) */
+.pixel-icon {
+    width: 10px; /* Tamanho do pixel individual */
+    height: 10px;
+    position: absolute;
+    bottom: 60px; /* Distância acima do texto */
+    opacity: 0;   /* Escondido por padrão */
+    transition: opacity 0.2s steps(2);
+    pointer-events: none;
+}
+
+/* REVELAÇÃO NO HOVER */
+.pixel-wrapper:hover .pixel-icon {
+    opacity: 1;
+    animation: pixelFloat 0.8s steps(4) infinite;
+}
+
+.pixel-wrapper:hover .label {
+    color: #fff;
+}
+
+/* 4. DESENHOS EM PIXEL ART (BOX-SHADOW) */
+
+/* HTML5 - Escudo Laranja */
+#html-logo {
+    background: transparent;
+    box-shadow: 
+        10px 0 #E34F26, 20px 0 #E34F26, 30px 0 #E34F26, 40px 0 #E34F26, 50px 0 #E34F26,
+        0px 10px #E34F26, 60px 10px #E34F26,
+        0px 20px #E34F26, 20px 20px #fff, 30px 20px #fff, 40px 20px #fff, 60px 20px #E34F26,
+        0px 30px #E34F26, 60px 30px #E34F26,
+        10px 40px #E34F26, 50px 40px #E34F26,
+        20px 50px #E34F26, 40px 50px #E34F26,
+        30px 60px #E34F26;
+}
+
+/* CSS3 - Escudo Azul */
+#css-logo {
+    background: transparent;
+    box-shadow: 
+        10px 0 #1572B6, 20px 0 #1572B6, 30px 0 #1572B6, 40px 0 #1572B6, 50px 0 #1572B6,
+        0px 10px #1572B6, 60px 10px #1572B6,
+        0px 20px #1572B6, 20px 20px #fff, 40px 20px #fff, 60px 20px #1572B6,
+        0px 30px #1572B6, 30px 30px #fff, 60px 30px #1572B6,
+        10px 40px #1572B6, 50px 40px #1572B6,
+        20px 50px #1572B6, 40px 50px #1572B6,
+        30px 60px #1572B6;
+}
+
+/* JAVASCRIPT - Bloco Amarelo */
+#js-logo {
+    background: transparent;
+    box-shadow: 
+        0px 0 #F7DF1E, 10px 0 #F7DF1E, 20px 0 #F7DF1E, 30px 0 #F7DF1E, 40px 0 #F7DF1E, 50px 0 #F7DF1E,
+        0px 10px #F7DF1E, 50px 10px #F7DF1E,
+        0px 20px #F7DF1E, 30px 20px #000, 40px 20px #000, 50px 20px #F7DF1E,
+        0px 30px #F7DF1E, 40px 30px #000, 50px 30px #F7DF1E,
+        0px 40px #F7DF1E, 30px 40px #000, 40px 40px #000, 50px 40px #F7DF1E,
+        0px 50px #F7DF1E, 10px 50px #F7DF1E, 20px 50px #F7DF1E, 30px 50px #F7DF1E, 40px 50px #F7DF1E, 50px 50px #F7DF1E;
+}
+
+/* 5. ANIMAÇÃO DE FLUTUAÇÃO */
+@keyframes pixelFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
