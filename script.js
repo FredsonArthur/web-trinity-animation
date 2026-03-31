@@ -20,29 +20,35 @@ wrappers.forEach(wrapper => {
         label.style.textShadow = "none";
     });
 
-    // Efeito de Seleção (Clique)
+    // Efeito de Seleção (Clique) e Redirecionamento
     wrapper.addEventListener('click', () => {
-        const techName = label.innerText;
+        const techName = label.innerText.toUpperCase();
 
         // 1. Efeito de "Flash" na tela (Simula hardware antigo processando)
         document.body.style.backgroundColor = "#555";
         
         // 2. Pequeno tremor de câmera (Shake)
-        document.querySelector('.game-screen').style.transform = "translateX(5px)";
+        const gameScreen = document.querySelector('.game-screen');
+        gameScreen.style.transform = "translateX(5px)";
         
-        setTimeout(() => {
-            document.body.style.backgroundColor = "#000";
-            document.querySelector('.game-screen').style.transform = "translateX(0)";
-        }, 80);
-
         // 3. Feedback de seleção no console
         console.warn(`[SELEÇÃO]: ${techName} foi escolhido pelo Player 1!`);
 
-        // 4. Alerta estilizado (opcional, você pode trocar por um som no futuro)
-        // Usando um pequeno atraso para o alerta não travar a animação de flash
+        // 4. Lógica de Redirecionamento após o efeito visual
         setTimeout(() => {
-            alert(`>> ${techName} SELECTED <<`);
-        }, 150);
+            // Reseta efeitos visuais antes de sair da página
+            document.body.style.backgroundColor = "#000";
+            gameScreen.style.transform = "translateX(0)";
+
+            // Define o destino com base no texto do label
+            if (techName.includes("HTML")) {
+                window.location.href = "html_page.html";
+            } else if (techName.includes("CSS")) {
+                window.location.href = "css_page.html";
+            } else if (techName.includes("JAVASCRIPT") || techName.includes("JS")) {
+                window.location.href = "js_page.html";
+            }
+        }, 150); // Delay curto para o usuário ver o "Flash" de confirmação
     });
 });
 
